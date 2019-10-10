@@ -18,7 +18,7 @@ class PhotoUploader:
         self.window.setFixedSize(self.window.size())
 
         self.browse_btn = self.window.findChild(QPushButton, "BrowseButton")
-        self.list_view = self.window.findChild(QListView, "listView")
+        self.list_view = self.window.findChild(QTextEdit, "textEdit_3")
 
         self.browse_btn.clicked.connect(self.file_browse_evevt)
         self.window.show()
@@ -28,10 +28,18 @@ class PhotoUploader:
         print("button pressed")
         files = QFileDialog.getOpenFileNames()
 
-        #print(files[0])
-        #for file in files[0]:
-        #    f = file.split("/")[-1]
-        #    self.list_view.addItem(str(f))
+        print(files[0])
+
+        file_list = ""
+        index = 1
+        for file in files[0]:
+            f = file.split("/")[-1]
+            print(f)
+            file_list += str(index) + " : " + str(f) + "\n"
+            index += 1
+
+        self.list_view.setText(file_list)
+
 
 
 if __name__ == '__main__':

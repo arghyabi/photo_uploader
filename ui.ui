@@ -49,16 +49,6 @@
        <string>Browse Files</string>
       </property>
      </widget>
-     <widget class="QListView" name="listView">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>361</width>
-        <height>271</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="RemoveFile">
       <property name="geometry">
        <rect>
@@ -93,6 +83,16 @@
       </property>
       <property name="text">
        <string>Next</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>361</width>
+        <height>271</height>
+       </rect>
       </property>
      </widget>
     </widget>
