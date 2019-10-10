@@ -12,39 +12,68 @@ class PhotoUploader(QMainWindow):
         self.setFixedSize(self.size())
 
         self.console_data = ""
+        self.select_tab = 0
+        self.resize_tab = 1
+        self.upload_tab = 2
 
         self.tabs = self.findChild(QTabWidget, "tabWidget")
         self.browse_btn = self.findChild(QPushButton, "BrowseButton")
         self.select_tab_next_btn = self.findChild(QPushButton, "Select_tab_next_btn")
         self.list_view = self.findChild(QTextEdit, "textEdit_3")
         self.console = self.findChild(QTextEdit, "console")
-
-        self.browse_btn.clicked.connect(self.file_browse_event)
-        self.select_tab_next_btn.clicked.connect(lambda: self.tab_next_event(1))
-
-        self.add_console_data("Photo Uploader By Python", "white", 'c')
+        self.remove_file = self.findChild(QPushButton, "RemoveFile")
+        self.reset_btn = self.findChild(QPushButton, "ResetButton")
 
         self.show()
+
+    def initialization(self):
+        self.reset_btn.setStyleSheet('color: red;')
+        self.list_view.setText("")
+        self.tab_disable(self.resize_tab, False)
+        self.tab_disable(self.upload_tab, False)
+        self.list_view.setReadOnly(True)
+        self.console.setReadOnly(True)
+        self.browse_btn.setEnabled(True)
+        self.reset_btn.setEnabled(False)
+        self.select_tab_next_btn.setEnabled(False)
+        self.remove_file.setEnabled(False)
+        self.browse_btn.clicked.connect(self.file_browse_event)
+        self.select_tab_next_btn.clicked.connect(lambda: self.tab_next_event(self.resize_tab))
+        self.reset_btn.clicked.connect(self.initialization)
+
+        self.add_console_data("Photo Uploader By Python", "white", 'c', True)
 
     def file_browse_event(self):
         files = QFileDialog.getOpenFileNames()
 
-        print(files[0])
+        #print(files[0])
 
         file_list = ""
         index = 1
         for file in files[0]:
             f = file.split("/")[-1]
-            print(f)
             file_list += str(index) + " : " + str(f) + "\n"
             index += 1
 
-        self.list_view.setText(file_list)
+        if index > 1:
+            self.list_view.setText(file_list)
+            self.add_console_data(str(index - 1) + " files added")
+            self.select_tab_next_btn.setEnabled(True)
+            self.reset_btn.setEnabled(True)
+            self.browse_btn.setEnabled(False)
+            self.tab_disable(self.resize_tab, True)
+            scroll = self.list_view.verticalScrollBar()
+            scroll.setValue(scroll.maximum())
 
-    def tab_next_event(self,tab_num):
+    def tab_next_event(self, tab_num):
         QTabWidget.setCurrentIndex(self.tabs, tab_num)
 
-    def add_console_data(self, text, color='white', alignment='l'):
+    def tab_disable(self, tab_num, disable):
+        QTabWidget.setTabEnabled(self.tabs, tab_num, disable)
+
+    def add_console_data(self, text, color='white', alignment='l', clear=False):
+        if clear:
+            self.console_data = ""
         f_alignment = ""
         if alignment == 'c' or alignment == 'C':
             f_alignment = "align = 'center'"
@@ -75,5 +104,6 @@ class PhotoUploader(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    biometric = PhotoUploader(UI_file)
+    photo_uploader = PhotoUploader(UI_file)
+    photo_uploader.initialization()
     sys.exit(app.exec_())
