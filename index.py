@@ -24,6 +24,16 @@ class PhotoUploader(QMainWindow):
         self.remove_file = self.findChild(QPushButton, "RemoveFile")
         self.reset_btn = self.findChild(QPushButton, "ResetButton")
 
+        self.ratio_radio_btn = self.findChild(QRadioButton, "ratio_radio_btn")
+        self.max_file_size_radio_btn = self.findChild(QRadioButton, "max_F_size_radio_btn")
+        self.max_dimension_radio_btn = self.findChild(QRadioButton, "max_dimension_radio_btn")
+        self.progress_bar_01 = self.findChild(QProgressBar, "SingleProgressBar")
+        self.progress_bar_02 = self.findChild(QProgressBar, "TotalProgressBar")
+        self.slider = self.findChild(QSlider, "horizontalSlider")
+        self.slider_value = self.findChild(QLineEdit, "show_slider_value")
+        self.max_file_size = self.findChild(QLineEdit, "Max_file_size")
+        self.max_file_size_label = self.findChild(QLabel, "max_size_label")
+
         self.show()
 
     def initialization(self):
@@ -43,10 +53,19 @@ class PhotoUploader(QMainWindow):
 
         self.add_console_data("Photo Uploader By Python", "white", 'c', True)
 
+        self.ratio_radio_btn.toggled.connect(self.set_wiz_with_radio_btn)
+        self.max_dimension_radio_btn.toggled.connect(self.set_wiz_with_radio_btn)
+        self.max_file_size_radio_btn.toggled.connect(self.set_wiz_with_radio_btn)
+        self.progress_bar_01.setValue(0)
+        self.progress_bar_02.setValue(0)
+        self.slider_value.setReadOnly(True)
+        self.slider_value.setText("0%")
+        self.slider.valueChanged.connect(self.slider_value_change)
+        self.max_file_size.setVisible(False)
+        self.max_file_size_label.setText("")
+
     def file_browse_event(self):
         files = QFileDialog.getOpenFileNames()
-
-        #print(files[0])
 
         file_list = ""
         index = 1
@@ -70,6 +89,21 @@ class PhotoUploader(QMainWindow):
 
     def tab_disable(self, tab_num, disable):
         QTabWidget.setTabEnabled(self.tabs, tab_num, disable)
+
+    def slider_value_change(self):
+        self.slider_value.setText(str(self.slider.value()) + "%")
+
+    def set_wiz_with_radio_btn(self):
+        if self.ratio_radio_btn.isChecked():
+            self.slider.setVisible(True)
+            self.slider_value.setVisible(True)
+            self.max_file_size.setVisible(False)
+            self.max_file_size_label.setText("")
+        elif self.max_file_size_radio_btn.isChecked():
+            self.max_file_size.setVisible(True)
+            self.max_file_size_label.setText("kb")
+            self.slider.setVisible(False)
+            self.slider_value.setVisible(False)
 
     def add_console_data(self, text, color='white', alignment='l', clear=False):
         if clear:

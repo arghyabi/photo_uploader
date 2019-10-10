@@ -113,61 +113,12 @@
      <attribute name="title">
       <string>Resize</string>
      </attribute>
-     <widget class="QPushButton" name="resize_ClearFile">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>20</y>
-        <width>81</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Clear</string>
-      </property>
-     </widget>
-     <widget class="QListView" name="resize_listView">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>261</width>
-        <height>221</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="resize_BrowseButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Browse Files</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="resize_validate_btn">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>290</y>
-        <width>261</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Validate</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="Resize_btn">
       <property name="geometry">
        <rect>
         <x>340</x>
         <y>80</y>
-        <width>191</width>
+        <width>201</width>
         <height>51</height>
        </rect>
       </property>
@@ -212,6 +163,94 @@
       </property>
       <property name="text">
        <string>Next</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="max_dimension_radio_btn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>171</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Maximun Dimension</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="max_F_size_radio_btn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>181</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Maximun File Size (Kb)</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="ratio_radio_btn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>131</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Resize Ratio (%)</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="show_slider_value">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>200</y>
+        <width>41</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Max_file_size">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>200</y>
+        <width>113</width>
+        <height>25</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="max_size_label">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>206</y>
+        <width>31</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Kb</string>
       </property>
      </widget>
     </widget>
