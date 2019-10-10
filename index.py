@@ -1,30 +1,24 @@
+from PyQt5 import uic
+from PyQt5.QtWidgets import *
 import sys
-from PySide2.QtUiTools import QUiLoader
-from PySide2.QtWidgets import *
-from PySide2.QtCore import QFile, QFileSelector
-from PySide2.QtGui import QFileOpenEvent
-
 
 UI_file = "ui.ui"
 
 
-class PhotoUploader:
+class PhotoUploader(QMainWindow):
     def __init__(self, ui_file):
-        ui = QFile(ui_file)
-        ui.open(QFile.ReadOnly)
-        loader = QUiLoader()
-        self.window = loader.load(ui)
-        ui.close()
-        self.window.setFixedSize(self.window.size())
+        super(PhotoUploader, self).__init__()
+        uic.loadUi('ui.ui', self)
+        self.setFixedSize(self.size())
 
-        self.browse_btn = self.window.findChild(QPushButton, "BrowseButton")
-        self.list_view = self.window.findChild(QTextEdit, "textEdit_3")
+        self.browse_btn = self.findChild(QPushButton, "BrowseButton")
+        self.list_view = self.findChild(QTextEdit, "textEdit_3")
 
-        self.browse_btn.clicked.connect(self.file_browse_evevt)
-        self.window.show()
+        self.browse_btn.clicked.connect(self.file_browse_event)
 
+        self.show()
 
-    def file_browse_evevt(self):
+    def file_browse_event(self):
         print("button pressed")
         files = QFileDialog.getOpenFileNames()
 
@@ -39,7 +33,6 @@ class PhotoUploader:
             index += 1
 
         self.list_view.setText(file_list)
-
 
 
 if __name__ == '__main__':
