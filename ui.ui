@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>File Upload</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icon.jpg</normaloff>icon.jpg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
@@ -30,7 +34,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Select_tab">
      <attribute name="title">
@@ -116,10 +120,10 @@
      <widget class="QPushButton" name="Resize_btn">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>80</y>
-        <width>201</width>
-        <height>51</height>
+        <x>20</x>
+        <y>190</y>
+        <width>251</width>
+        <height>61</height>
        </rect>
       </property>
       <property name="text">
@@ -129,10 +133,10 @@
      <widget class="QProgressBar" name="SingleProgressBar">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>170</y>
-        <width>261</width>
-        <height>31</height>
+        <x>20</x>
+        <y>270</y>
+        <width>441</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="value">
@@ -142,10 +146,10 @@
      <widget class="QProgressBar" name="TotalProgressBar">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>220</y>
-        <width>261</width>
-        <height>31</height>
+        <x>20</x>
+        <y>300</y>
+        <width>441</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="value">
@@ -156,9 +160,9 @@
       <property name="geometry">
        <rect>
         <x>480</x>
-        <y>280</y>
+        <y>270</y>
         <width>101</width>
-        <height>41</height>
+        <height>51</height>
        </rect>
       </property>
       <property name="text">
@@ -192,6 +196,9 @@
       </property>
      </widget>
      <widget class="QRadioButton" name="ratio_radio_btn">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -200,10 +207,22 @@
         <height>23</height>
        </rect>
       </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
       <property name="text">
        <string>Resize Ratio (%)</string>
       </property>
+      <property name="shortcut">
+       <string>Space</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
       <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="autoExclusive">
        <bool>true</bool>
       </property>
      </widget>
@@ -211,7 +230,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>200</y>
+        <y>130</y>
         <width>181</width>
         <height>31</height>
        </rect>
@@ -224,7 +243,7 @@
       <property name="geometry">
        <rect>
         <x>210</x>
-        <y>200</y>
+        <y>130</y>
         <width>41</width>
         <height>25</height>
        </rect>
@@ -234,7 +253,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>200</y>
+        <y>130</y>
         <width>113</width>
         <height>25</height>
        </rect>
@@ -244,13 +263,82 @@
       <property name="geometry">
        <rect>
         <x>140</x>
-        <y>206</y>
+        <y>130</y>
         <width>31</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
        <string>Kb</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="height_box">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>140</y>
+        <width>71</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="width_box">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>140</y>
+        <width>71</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="max_height_label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>120</y>
+        <width>66</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Height</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="max_width_label">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>120</y>
+        <width>66</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Width</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_6">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>40</y>
+        <width>301</width>
+        <height>211</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>10</y>
+        <width>96</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select All</string>
       </property>
      </widget>
     </widget>

@@ -33,6 +33,10 @@ class PhotoUploader(QMainWindow):
         self.slider_value = self.findChild(QLineEdit, "show_slider_value")
         self.max_file_size = self.findChild(QLineEdit, "Max_file_size")
         self.max_file_size_label = self.findChild(QLabel, "max_size_label")
+        self.max_height_box = self.findChild(QLineEdit, "height_box")
+        self.max_width_box = self.findChild(QLineEdit, "width_box")
+        self.max_height_label = self.findChild(QLabel, "max_height_label")
+        self.max_width_label = self.findChild(QLabel, "max_width_label")
 
         self.show()
 
@@ -59,10 +63,16 @@ class PhotoUploader(QMainWindow):
         self.progress_bar_01.setValue(0)
         self.progress_bar_02.setValue(0)
         self.slider_value.setReadOnly(True)
-        self.slider_value.setText("0%")
+        self.slider_value.setText("")
         self.slider.valueChanged.connect(self.slider_value_change)
+        self.slider.setVisible(False)
+        self.slider_value.setVisible(False)
         self.max_file_size.setVisible(False)
         self.max_file_size_label.setText("")
+        self.max_height_box.setVisible(False)
+        self.max_height_label.setText("")
+        self.max_width_box.setVisible(False)
+        self.max_width_label.setText("")
 
     def file_browse_event(self):
         files = QFileDialog.getOpenFileNames()
@@ -97,11 +107,29 @@ class PhotoUploader(QMainWindow):
         if self.ratio_radio_btn.isChecked():
             self.slider.setVisible(True)
             self.slider_value.setVisible(True)
+            self.slider_value.setText("0%")
             self.max_file_size.setVisible(False)
             self.max_file_size_label.setText("")
+            self.max_height_box.setVisible(False)
+            self.max_width_box.setVisible(False)
+            self.max_height_label.setText("")
+            self.max_width_label.setText("")
         elif self.max_file_size_radio_btn.isChecked():
             self.max_file_size.setVisible(True)
             self.max_file_size_label.setText("kb")
+            self.slider.setVisible(False)
+            self.slider_value.setVisible(False)
+            self.max_height_box.setVisible(False)
+            self.max_width_box.setVisible(False)
+            self.max_height_label.setText("")
+            self.max_width_label.setText("")
+        elif self.max_dimension_radio_btn.isChecked():
+            self.max_height_box.setVisible(True)
+            self.max_width_box.setVisible(True)
+            self.max_height_label.setText("Height")
+            self.max_width_label.setText("Width")
+            self.max_file_size.setVisible(False)
+            self.max_file_size_label.setText("")
             self.slider.setVisible(False)
             self.slider_value.setVisible(False)
 
